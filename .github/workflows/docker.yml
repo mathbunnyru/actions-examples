@@ -39,5 +39,12 @@ jobs:
       - name: Build image 🛠
         run: docker build --rm --force-rm --tag ${{ env.OWNER }}/${{ env.IMAGE_NAME }} docker-build-example/image/
 
+      - name: Login to Docker Hub 🔐
+        if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+        uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # v2.2.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Push image 📤
         run: docker push --all-tags ${{ env.OWNER }}/${{ env.IMAGE_NAME }}

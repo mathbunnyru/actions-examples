@@ -1,0 +1,43 @@
+# .github/workflows/docker.yml
+name: Build, test and push Docker Images
+
+env:
+  OWNER: ${{ github.repository_owner }}
+  IMAGE_NAME: actions-example-image
+
+on:
+  schedule:
+    # Weekly, at 03:00 on Monday UTC time
+    - cron: "0 3 * * 1"
+  pull_request:
+    paths:
+      - ".github/workflows/docker.yml"
+      - "docker-build-example/image/**"
+      - "!docker-build-example/image/README.md"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/docker.yml"
+      - "docker-build-example/image/**"
+      - "!docker-build-example/image/README.md"
+  workflow_dispatch:
+
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+  # only cancel in-progress jobs or runs for the current workflow - matches against branch & tags
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo ⚡️
+        uses: actions/checkout@v4
+      
+      - name: Build image 🛠
+        run: docker build --rm --force-rm --tag ${{ env.OWNER }}/${{ env.IMAGE_NAME }} docker-build-example/image/
+
+      - name: Push image 📤
+        run: docker push --all-tags ${{ env.OWNER }}/${{ env.IMAGE_NAME }}

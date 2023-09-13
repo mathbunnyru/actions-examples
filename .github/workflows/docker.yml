@@ -1,5 +1,5 @@
 # .github/workflows/docker.yml
-name: Build, test and push Docker Images
+name: Build and push Docker Image
 
 env:
   OWNER: ${{ github.repository_owner }}

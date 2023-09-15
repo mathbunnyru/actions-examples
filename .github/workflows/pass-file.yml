@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-        - ".github/workflows/pass-file.yml"
+      - ".github/workflows/pass-file.yml"
   workflow_dispatch:
 
 jobs:

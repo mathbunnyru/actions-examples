@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-        - ".github/workflows/pass-output.yml"
+      - ".github/workflows/pass-output.yml"
   workflow_dispatch:
 
 jobs:

@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Checkout Repo ⚡️
         uses: actions/checkout@v4
-      
+
       - name: Build image 🛠
         run: docker build --rm --force-rm --tag ${{ env.OWNER }}/${{ env.IMAGE_NAME }} docker-build-example/image/
 

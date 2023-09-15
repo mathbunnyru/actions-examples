@@ -1,0 +1,40 @@
+# .github/workflows/docker.yml
+name: Example to pass a file from one job to another
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/file-example.yml"
+  push:
+    branches:
+      - main
+    paths:
+        - ".github/workflows/file-example.yml"
+  workflow_dispatch:
+
+jobs:
+  upload-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a file 💾
+        run: echo "some-crazy-file" > awesome-file.txt
+
+      - name: Upload tags file 💾
+        uses: actions/upload-artifact@v3
+        with:
+          name: awesome-artifact
+          path: awesome-file.txt
+          retention-days: 3
+
+  download-job:
+    runs-on: ubuntu-latest
+    needs: upload-job
+    steps:
+      - name: Download artifact 📥
+        uses: actions/download-artifact@v3
+        with:
+          name: awesome-artifact
+          path: /tmp
+
+      - name: Echo file ✅
+        run: cat /tmp/awesome-file.txt

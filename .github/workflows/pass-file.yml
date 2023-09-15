@@ -1,15 +1,14 @@
-# .github/workflows/docker.yml
 name: Example to pass a file from one job to another
 
 on:
   pull_request:
     paths:
-      - ".github/workflows/file-example.yml"
+      - ".github/workflows/pass-file.yml"
   push:
     branches:
       - main
     paths:
-        - ".github/workflows/file-example.yml"
+        - ".github/workflows/pass-file.yml"
   workflow_dispatch:
 
 jobs:

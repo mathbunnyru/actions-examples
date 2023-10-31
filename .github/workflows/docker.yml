@@ -3,7 +3,7 @@ name: Build and push Docker Image
 env:
   OWNER: ${{ github.repository_owner }}
   IMAGE_NAME: actions-example-image
-  PUSH: ${{ github.repository_owner == 'wow' }}
+  PUSH: ${{ github.repository_owner == 'mathbunnyru' }}
 
 on:
   schedule:

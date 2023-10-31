@@ -3,6 +3,7 @@ name: Build and push Docker Image
 env:
   OWNER: ${{ github.repository_owner }}
   IMAGE_NAME: actions-example-image
+  PUSH_TO_REGISTRY: ${{ github.repository_owner == 'mathbunnyru' && (github.ref == 'refs/heads/main' || github.event_name == 'schedule') }}
 
 on:
   schedule:
@@ -39,11 +40,12 @@ jobs:
         run: docker build --rm --force-rm --tag ${{ env.OWNER }}/${{ env.IMAGE_NAME }} docker-build-example/image/
 
       - name: Login to Docker Hub 🔐
-        if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+        if: env.PUSH_TO_REGISTRY == 'true'
         uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # v2.2.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push image 📤
+        if: env.PUSH_TO_REGISTRY == 'true'
         run: docker push --all-tags ${{ env.OWNER }}/${{ env.IMAGE_NAME }}

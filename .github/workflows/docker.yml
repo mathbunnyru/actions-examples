@@ -3,6 +3,7 @@ name: Build and push Docker Image
 env:
   OWNER: ${{ github.repository_owner }}
   IMAGE_NAME: actions-example-image
+  PUSH: ${{ github.repository_owner == 'wow' }}
 
 on:
   schedule:
@@ -32,6 +33,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check
+        if: env.PUSH
+        run: echo "This should not run"
+
       - name: Checkout Repo ⚡️
         uses: actions/checkout@v4
 

@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check
-        if: env.PUSH
+        if: env.PUSH == 'true'
         run: echo "This should not run"
 
       - name: Checkout Repo ⚡️

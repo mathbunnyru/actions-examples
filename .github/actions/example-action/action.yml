@@ -10,6 +10,6 @@ runs:
   using: composite
   steps:
     - name: Print some text
-      if: ${{ !inputs.my-awesome-input == 'true' }}
+      if: ${{ !(inputs.my-awesome-input == 'true') }}
       run: echo "Wow"
       shell: bash

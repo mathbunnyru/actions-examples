@@ -1,0 +1,29 @@
+name: Call an action from the repo
+
+on:
+  schedule:
+    # Weekly, at 03:00 on Monday UTC time
+    - cron: "0 3 * * 1"
+  pull_request:
+    paths:
+      - ".github/workflows/use-action.yml"
+      - ".github/actions/example-action/action.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/use-action.yml"
+      - ".github/actions/example-action/action.yml"
+  workflow_dispatch:
+
+jobs:
+  call-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo ⚡️
+        uses: actions/checkout@v4
+
+      - name: Call action 📥
+        uses: ./.github/actions/example-action
+        with:
+          disable-print: ${{ contains(github.event.pull_request.title, '[DISABLE_PRINT]') }}

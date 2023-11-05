@@ -10,6 +10,6 @@ runs:
   using: composite
   steps:
     - name: Print some text
-      if: ${{ inputs.disable-print == 'false' }}
+      if: inputs.disable-print == 'false'
       run: echo "Print is enabled"
       shell: bash

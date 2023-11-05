@@ -26,4 +26,4 @@ jobs:
       - name: Call action 📥
         uses: ./.github/actions/example-action
         with:
-          my-awesome-input: ${{ contains(github.event.pull_request.title, '[INPUT_ENABLED]') }}
+          disable-print: ${{ contains(github.event.pull_request.title, '[DISABLE_PRINT]') }}

@@ -2,14 +2,14 @@ name: Example action
 description: A simple example of a composite action with an input
 
 inputs:
-  my-awesome-input:
-    description: My awesome input
+  disable-print:
+    description: Disable print
     required: true
 
 runs:
   using: composite
   steps:
     - name: Print some text
-      if: ${{ !(inputs.my-awesome-input == 'true') }}
-      run: echo "Wow"
+      if: ${{ inputs.disable-print == 'false' }}
+      run: echo "Print is enabled"
       shell: bash

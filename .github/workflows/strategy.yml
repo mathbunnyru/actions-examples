@@ -17,8 +17,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
-        os: [macos-latest, windows-latest, ubuntu-22.04]
+        node-version: [18.x, 20.x]
+        os: [macos-latest, windows-latest, ubuntu-24.04]
 
         include:
           - node-version: 20.x
@@ -26,7 +26,7 @@ jobs:
 
         exclude:
           - node-version: 18.x
-            os: ubuntu-22.04
+            os: ubuntu-24.04
 
     steps:
       - uses: actions/setup-node@v4

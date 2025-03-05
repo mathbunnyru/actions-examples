@@ -35,5 +35,5 @@ jobs:
           name: awesome-artifact
           path: /tmp
 
-      - name: Echo file ✅
+      - name: Cat file ✅
         run: cat /tmp/awesome-file.txt

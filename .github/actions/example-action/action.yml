@@ -5,10 +5,15 @@ inputs:
   disable-print:
     description: Disable print
     required: true
+    default: "wowow"
 
 runs:
   using: composite
   steps:
+    - name: Print input
+      run: echo "disable-print is set to '${{ inputs.disable-print }}'"
+      shell: bash
+
     - name: Print some text
       if: inputs.disable-print == 'false'
       run: echo "Print is enabled"

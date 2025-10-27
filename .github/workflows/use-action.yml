@@ -25,5 +25,3 @@ jobs:
 
       - name: Call action 📥
         uses: ./.github/actions/example-action
-        with:
-          disable-print: ${{ contains(github.event.pull_request.title, '[DISABLE_PRINT]') }}

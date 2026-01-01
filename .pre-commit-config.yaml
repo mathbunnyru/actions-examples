@@ -2,7 +2,7 @@
 repos:
   # Autoformat: YAML, JSON, Markdown, etc.
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.7.3
+    rev: v3.7.4
     hooks:
       - id: prettier
 

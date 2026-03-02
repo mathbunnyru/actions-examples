@@ -30,7 +30,7 @@ jobs:
     needs: upload-job
     steps:
       - name: Download artifact 📥
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: awesome-artifact
           path: /tmp

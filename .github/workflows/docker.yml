@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ⚡️
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Build image 🛠
         run: docker build --rm --force-rm --tag ${{ env.OWNER }}/${{ env.IMAGE_NAME }} docker-build-example/image/

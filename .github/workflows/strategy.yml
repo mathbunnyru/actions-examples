@@ -29,6 +29,6 @@ jobs:
             os: ubuntu-24.04
 
     steps:
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
